@@ -1,0 +1,45 @@
+﻿@model CapaEntidad.Ticket
+
+@{
+    ViewBag.Title = "Crear Nuevo Ticket";
+}
+
+<h2>Crear Nuevo Ticket</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            @using (Html.BeginForm("GuardarTicket", "Ticket", FormMethod.Post, new { @id = "ticketForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    @Html.LabelFor(m => m.IdCliente)
+                    @Html.TextBoxFor(m => m.IdCliente, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Asunto)
+                    @Html.TextBoxFor(m => m.Asunto, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Descripcion)
+                    @Html.TextAreaFor(m => m.Descripcion, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Prioridad)
+                    @Html.DropDownListFor(m => m.Prioridad, new SelectList(new[]
+                    {
+                        new SelectListItem { Text = "Bajo", Value = "Bajo" },
+                        new SelectListItem { Text = "Medio", Value = "Medio" },
+                        new SelectListItem { Text = "Alto", Value = "Alto" },
+                        new SelectListItem { Text = "Grave", Value = "Grave" }
+                    }, "Value", "Text"), "Seleccione una prioridad", new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Comentario)
+                    @Html.TextAreaFor(m => m.Comentario, new { @class = "form-control" })
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            }
+        </div>
+    </div>
+</div>

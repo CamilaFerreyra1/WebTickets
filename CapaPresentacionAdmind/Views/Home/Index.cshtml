@@ -1,0 +1,386 @@
+﻿@{
+    ViewBag.Title = "Tickets";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+    <!-- Incluyendo CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS personalizado -->
+    <style>
+        body {
+            background-color: #f0f8ff;
+        }
+
+        .breadcrumb {
+            background-color: #e3f2fd;
+        }
+
+        .card-header {
+            background-color: #4fc3f7;
+        }
+
+        .btn-primary {
+            background-color: #039be5;
+            border-color: #039be5;
+        }
+
+            .btn-primary:hover {
+                background-color: #0288d1;
+                border-color: #0288d1;
+            }
+
+        .btn-success {
+            background-color: #4caf50;
+            border-color: #4caf50;
+        }
+
+            .btn-success:hover {
+                background-color: #388e3c;
+                border-color: #388e3c;
+            }
+
+        .modal-header {
+            background-color: #4fc3f7;
+        }
+
+            .modal-header .btn-close {
+                filter: invert(1);
+            }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #e3f2fd;
+        }
+
+        .table-striped tbody tr:nth-of-type(even) {
+            background-color: #ffffff;
+        }
+
+        .badge.bg-success {
+            background-color: #4caf50;
+        }
+
+        .badge.bg-danger {
+            background-color: #f44336;
+        }
+
+        .btn-primary.btn-editar {
+            background-color: #039be5;
+            border-color: #039be5;
+        }
+
+        .btn-danger.btn-eliminar {
+            background-color: #f44336;
+            border-color: #f44336;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ol class="breadcrumb mb-4 mt-4">
+            <li class="breadcrumb-item active">Tickets</li>
+        </ol>
+
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <i class="fas fa-tags me-1"></i> Historial de Tickets
+            </div>
+
+            @*<div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-12 text-end">
+                        <button type="button" class="btn btn-success" onclick="abrirModal(null)">Crear Nuevo</button>
+                    </div>
+                </div>*@
+
+                <hr />
+
+                <table id="tablaTickets" class="display cell-border table table-striped" style="width: 100%">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th>IdTicket</th>
+                            <th>IdCliente</th>
+                            <th>Asunto</th>
+                            <th>Descripción</th>
+                            <th>Estado</th>
+                            <th>FechaCreación</th>
+                            <th>FechaCierre</th>
+                            <th>Prioridad</th>
+                            <th>Comentario</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-info text-white">
+                        <h5 class="modal-title" id="exampleModalLabel">Ticket</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input id="txtid" type="hidden" value="0" />
+                        <div class="row g-2">
+                            <div class="col-sm-6">
+                                <label for="txtidcliente" class="form-label">IdCliente</label>
+                                <input type="text" class="form-control" id="txtidcliente" autocomplete="off">
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="txtasunto" class="form-label">Asunto</label>
+                                <input type="text" class="form-control" id="txtasunto" autocomplete="off">
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="txtdescripcion" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="txtdescripcion" autocomplete="off"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtestado">Estado:</label>
+                                <select class="form-control" id="txtestado" name="txtestado">
+                                    <option value="Pendiente">Pendiente</option>
+                                    <option value="Esperando contestación">Esperando contestación</option>
+                                    <option value="Cancelado">Cancelado</option>
+                                    <option value="Resuelto">Resuelto</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="txtfechacreacion" class="form-label">Fecha Creación</label>
+                                <input type="text" class="form-control" id="txtfechacreacion" autocomplete="off">
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="txtfechacierre" class="form-label">Fecha Cierre</label>
+                                <input type="text" class="form-control" id="txtfechacierre" autocomplete="off">
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="txtprioridad" class="form-label">Prioridad</label>
+                                <input type="text" class="form-control" id="txtprioridad" autocomplete="off">
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="txtcomentario" class="form-label">Comentario</label>
+                                <textarea class="form-control" id="txtcomentario" autocomplete="off"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <div id="mensajeError" class="alert alert-danger" role="alert" style="display:none;">
+                                    A simple danger alert—check it out!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" onclick="Guardar()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Incluyendo jQuery y Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        var tabladata;
+        var filaSeleccionada;
+
+        $(document).ready(function () {
+            tabladata = $("#tablaTickets").DataTable({
+                responsive: true,
+                ordering: false,
+                "ajax": {
+                    url: '@Url.Action("ListarTickets", "Mantenedor")',
+                    type: "GET",
+                    dataType: "json"
+                },
+                "columns": [
+                    { "data": "IdTicket" },
+                    { "data": "IdCliente" },
+                    { "data": "Asunto" },
+                    { "data": "Descripcion" },
+                    { "data": "Estado" },
+                    { "data": "FechaCreacion" },
+                    { "data": "FechaCierre" },
+                    { "data": "Prioridad" },
+                    { "data": "Comentario" },
+                    {
+                        "data": null,
+                        "defaultContent": '<button type="button" class="btn btn-primary btn-sm btn-editar"><i class="fas fa-pen"></i></button>' +
+                            '<button type="button" class="btn btn-danger btn-sm ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>',
+                        "orderable": false,
+                        "searchable": false,
+                        "width": "90px"
+                    }
+                ],
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
+                }
+            });
+        });
+
+        function abrirModal(json) {
+            $("#txtid").val(0);
+            $("#txtidcliente").val("");
+            $("#txtasunto").val("");
+            $("#txtdescripcion").val("");
+            $("#txtestado").val("");
+            $("#txtfechacreacion").val("");
+            $("#txtfechacierre").val("");
+            $("#txtprioridad").val("");
+            $("#txtcomentario").val("");
+            $("#mensajeError").hide();
+            $("#txtid").prop('disabled', false);
+            $("#txtidcliente").prop('disabled', false);
+            $("#txtfechacreacion").prop('disabled', false);
+
+            if (json != null) {
+                $("#txtid").val(json.IdTicket);
+                $("#txtidcliente").val(json.IdCliente);
+                $("#txtasunto").val(json.Asunto);
+                $("#txtdescripcion").val(json.Descripcion);
+                $("#txtestado").val(json.Estado);
+                $("#txtfechacreacion").val(json.FechaCreacion);
+                $("#txtfechacierre").val(json.FechaCierre);
+                $("#txtprioridad").val(json.Prioridad);
+                $("#txtcomentario").val(json.Comentario);
+
+                $("#txtid").prop('disabled', true);
+                $("#txtidcliente").prop('disabled', true);
+                $("#txtfechacreacion").prop('disabled', true);
+            }
+
+            $("#FormModal").modal("show");
+        }
+
+        $("#txtestado").change(function () {
+            var estadoSeleccionado = $(this).val();
+            if (estadoSeleccionado === "Resuelto" || estadoSeleccionado === "Cerrado") {
+                // Establecer la fecha de cierre al momento actual
+                var fechaCierre = new Date().toISOString().slice(0, 19).replace('T', ' ');
+                $("#txtfechacierre").val(fechaCierre);
+            }
+        });
+
+
+        $("#tablaTickets tbody").on("click", '.btn-editar', function () {
+            filaSeleccionada = $(this).closest("tr");
+            var data = tabladata.row(filaSeleccionada).data();
+            abrirModal(data);
+        });
+
+        $("#tablaTickets tbody").on("click", '.btn-eliminar', function () {
+            var ticketSeleccionado = $(this).closest("tr");
+            var data = tabladata.row(ticketSeleccionado).data();
+
+            Swal.fire({
+                title: "¿Está seguro?",
+                text: "¿Desea eliminar el ticket?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-primary",
+                confirmButtonText: "Sí",
+                cancelButtonText: "No",
+                closeOnConfirm: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '@Url.Action("EliminarTicket", "Mantenedor")',
+                        type: "POST",
+                        data: JSON.stringify({ id: data.IdTicket }),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            if (data.resultado) {
+                                tabladata.row(ticketSeleccionado).remove().draw();
+                            } else {
+                                Swal.fire("No se pudo eliminar", data.mensaje, "error");
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+                }
+            });
+        });
+
+        function Guardar() {
+            var Ticket = {
+                IdTicket: $("#txtid").val(),
+                IdCliente: $("#txtidcliente").val(),
+                Asunto: $("#txtasunto").val(),
+                Descripcion: $("#txtdescripcion").val(),
+                Estado: $("#txtestado").val(),
+                FechaCreacion: $("#txtfechacreacion").val(),
+                FechaCierre: $("#txtfechacierre").val(),
+                Prioridad: $("#txtprioridad").val(),
+                Comentario: $("#txtcomentario").val()
+            };
+
+            $.ajax({
+                url: '@Url.Action("GuardarTicket", "Mantenedor")',
+                type: "POST",
+                data: JSON.stringify({ objeto: Ticket }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    $(".modal-body").LoadingOverlay("hide");
+
+                    if (Ticket.IdTicket == 0) {
+                        if (data.resultado != 0) {
+                            Ticket.IdTicket = data.resultado;
+                            tabladata.row.add(Ticket).draw(false);
+                            $("#FormModal").modal("hide");
+                        } else {
+                            $("#mensajeError").text(data.mensaje);
+                            $("#mensajeError").show();
+                        }
+                    } else {
+                        if (data.resultado) {
+                            tabladata.row(filaSeleccionada).data(Ticket).draw(false);
+                            filaSeleccionada = null;
+                            $("#FormModal").modal("hide");
+                        } else {
+                            $("#mensajeError").text(data.mensaje);
+                            $("#mensajeError").show();
+                        }
+                    }
+                },
+                error: function (error) {
+                    $(".modal-body").LoadingOverlay("hide");
+                    $("#mensajeError").text("Error Ajax");
+                    $("#mensajeError").show();
+                },
+                beforeSend: function () {
+                    $(".modal-body").LoadingOverlay("show", {
+                        imageResizeFactor: 2,
+                        text: "Cargando...",
+                        size: 14
+                    });
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\CapaDatos",
+    "\\CapaEntidad",
+    "\\CapaPresentacionAdmind",
+    "\\CapaPresentacionAdmind\\Controllers",
+    "\\CapaPresentacionAdmind\\Views",
+    "\\CapaPresentacionAdmind\\Views\\Acceso",
+    "\\CapaPresentacionAdmind\\Views\\Home",
+    "\\CapaPresentacionAdmind\\Views\\Matenedor",
+    "\\CapaPresentacionAdmind\\Views\\Shared"
+  ],
+  "PreviewInSolutionExplorer": false
+}

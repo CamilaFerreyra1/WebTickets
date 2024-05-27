@@ -1,0 +1,2 @@
+C:\platzi\AppTinySoftPrueba\CapaNegocios\obj\Debug\CapaNegocios.csproj.CoreCompileInputs.cache
+C:\platzi\AppTinySoftPrueba\CapaNegocios\obj\Debug\CapaNegocios.csproj.AssemblyReference.cache

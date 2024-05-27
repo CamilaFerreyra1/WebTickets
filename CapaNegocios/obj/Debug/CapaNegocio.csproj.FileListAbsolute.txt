@@ -1,0 +1,14 @@
+C:\platzi\AppTinySoftPrueba\CapaNegocios\obj\Debug\CapaNegocio.csproj.CoreCompileInputs.cache
+C:\Users\usuario\AppTinySoftPrueba\CapaNegocios\obj\Debug\CapaNegocio.csproj.AssemblyReference.cache
+C:\Users\usuario\AppTinySoftPrueba\CapaNegocios\obj\Debug\CapaNegocio.csproj.CoreCompileInputs.cache
+C:\AppTinySoftPrueba\CapaNegocios\bin\Debug\CapaNegocios.dll
+C:\AppTinySoftPrueba\CapaNegocios\bin\Debug\CapaNegocios.pdb
+C:\AppTinySoftPrueba\CapaNegocios\bin\Debug\CapaDatos.dll
+C:\AppTinySoftPrueba\CapaNegocios\bin\Debug\CapaEntidad.dll
+C:\AppTinySoftPrueba\CapaNegocios\bin\Debug\CapaDatos.pdb
+C:\AppTinySoftPrueba\CapaNegocios\bin\Debug\CapaEntidad.pdb
+C:\AppTinySoftPrueba\CapaNegocios\obj\Debug\CapaNegocio.csproj.AssemblyReference.cache
+C:\AppTinySoftPrueba\CapaNegocios\obj\Debug\CapaNegocio.csproj.CoreCompileInputs.cache
+C:\AppTinySoftPrueba\CapaNegocios\obj\Debug\CapaNegocio.csproj.CopyComplete
+C:\AppTinySoftPrueba\CapaNegocios\obj\Debug\CapaNegocios.dll
+C:\AppTinySoftPrueba\CapaNegocios\obj\Debug\CapaNegocios.pdb

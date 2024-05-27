@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaPresentacionAdmind", "CapaPresentacionAdmind\CapaPresentacionAdmind.csproj", "{E9A4D2C3-EAA2-4F8D-AC66-9C9CF3BFB6CF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CA11AE02-FBC2-4D69-A805-5794F3118567} = {CA11AE02-FBC2-4D69-A805-5794F3118567}
+		{6595453E-35A2-4B65-B3FA-B5D96AE5A7C9} = {6595453E-35A2-4B65-B3FA-B5D96AE5A7C9}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaDatos", "CapaDatos\CapaDatos.csproj", "{6AED7DEF-7C4F-498F-96C0-DE639CF54538}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CA11AE02-FBC2-4D69-A805-5794F3118567} = {CA11AE02-FBC2-4D69-A805-5794F3118567}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaEntidad", "CapaEntidad\CapaEntidad.csproj", "{CA11AE02-FBC2-4D69-A805-5794F3118567}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaNegocio", "CapaNegocios\CapaNegocio.csproj", "{6595453E-35A2-4B65-B3FA-B5D96AE5A7C9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CA11AE02-FBC2-4D69-A805-5794F3118567} = {CA11AE02-FBC2-4D69-A805-5794F3118567}
+		{6AED7DEF-7C4F-498F-96C0-DE639CF54538} = {6AED7DEF-7C4F-498F-96C0-DE639CF54538}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaPresentacionCliente", "CapaPresentacionCliente\CapaPresentacionCliente.csproj", "{022B6AEC-403B-42C2-9B4B-E19746A13309}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CA11AE02-FBC2-4D69-A805-5794F3118567} = {CA11AE02-FBC2-4D69-A805-5794F3118567}
+		{6595453E-35A2-4B65-B3FA-B5D96AE5A7C9} = {6595453E-35A2-4B65-B3FA-B5D96AE5A7C9}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9A4D2C3-EAA2-4F8D-AC66-9C9CF3BFB6CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9A4D2C3-EAA2-4F8D-AC66-9C9CF3BFB6CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9A4D2C3-EAA2-4F8D-AC66-9C9CF3BFB6CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9A4D2C3-EAA2-4F8D-AC66-9C9CF3BFB6CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AED7DEF-7C4F-498F-96C0-DE639CF54538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AED7DEF-7C4F-498F-96C0-DE639CF54538}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AED7DEF-7C4F-498F-96C0-DE639CF54538}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AED7DEF-7C4F-498F-96C0-DE639CF54538}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA11AE02-FBC2-4D69-A805-5794F3118567}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA11AE02-FBC2-4D69-A805-5794F3118567}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA11AE02-FBC2-4D69-A805-5794F3118567}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA11AE02-FBC2-4D69-A805-5794F3118567}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6595453E-35A2-4B65-B3FA-B5D96AE5A7C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6595453E-35A2-4B65-B3FA-B5D96AE5A7C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6595453E-35A2-4B65-B3FA-B5D96AE5A7C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6595453E-35A2-4B65-B3FA-B5D96AE5A7C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{022B6AEC-403B-42C2-9B4B-E19746A13309}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{022B6AEC-403B-42C2-9B4B-E19746A13309}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{022B6AEC-403B-42C2-9B4B-E19746A13309}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{022B6AEC-403B-42C2-9B4B-E19746A13309}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F3348742-21B7-4D43-9A5F-ADD2E5CE510D}
+	EndGlobalSection
+EndGlobal

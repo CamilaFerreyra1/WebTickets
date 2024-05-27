@@ -1,0 +1,8 @@
+C:\platzi\AppTinySoftPrueba\CapaEntidad\obj\Debug\CapaEntidad.csproj.CoreCompileInputs.cache
+C:\Users\usuario\AppTinySoftPrueba\CapaEntidad\obj\Debug\CapaEntidad.csproj.AssemblyReference.cache
+C:\Users\usuario\AppTinySoftPrueba\CapaEntidad\obj\Debug\CapaEntidad.csproj.CoreCompileInputs.cache
+C:\AppTinySoftPrueba\CapaEntidad\bin\Debug\CapaEntidad.dll
+C:\AppTinySoftPrueba\CapaEntidad\bin\Debug\CapaEntidad.pdb
+C:\AppTinySoftPrueba\CapaEntidad\obj\Debug\CapaEntidad.csproj.CoreCompileInputs.cache
+C:\AppTinySoftPrueba\CapaEntidad\obj\Debug\CapaEntidad.dll
+C:\AppTinySoftPrueba\CapaEntidad\obj\Debug\CapaEntidad.pdb

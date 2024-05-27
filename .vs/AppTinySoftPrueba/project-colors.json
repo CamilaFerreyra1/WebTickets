@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "6aed7def-7c4f-498f-96c0-de639cf54538": {
+      "ProjectGuid": "6aed7def-7c4f-498f-96c0-de639cf54538",
+      "DisplayName": "CapaDatos",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Archivos varios",
+      "ColorIndex": -1
+    },
+    "e9a4d2c3-eaa2-4f8d-ac66-9c9cf3bfb6cf": {
+      "ProjectGuid": "e9a4d2c3-eaa2-4f8d-ac66-9c9cf3bfb6cf",
+      "DisplayName": "CapaPresentacionAdmind",
+      "ColorIndex": 1
+    },
+    "6595453e-35a2-4b65-b3fa-b5d96ae5a7c9": {
+      "ProjectGuid": "6595453e-35a2-4b65-b3fa-b5d96ae5a7c9",
+      "DisplayName": "CapaNegocio",
+      "ColorIndex": 2
+    },
+    "ca11ae02-fbc2-4d69-a805-5794f3118567": {
+      "ProjectGuid": "ca11ae02-fbc2-4d69-a805-5794f3118567",
+      "DisplayName": "CapaEntidad",
+      "ColorIndex": 3
+    },
+    "022b6aec-403b-42c2-9b4b-e19746a13309": {
+      "ProjectGuid": "022b6aec-403b-42c2-9b4b-e19746a13309",
+      "DisplayName": "CapaPresentacionCliente",
+      "ColorIndex": 4
+    }
+  },
+  "NextColorIndex": 5
+}

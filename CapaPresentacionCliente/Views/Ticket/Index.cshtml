@@ -1,0 +1,124 @@
+﻿@*@model IEnumerable<Ticket.Models.TicketModel>*@
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Listado de Tickets</h2>
+        <table id="tablaTickets" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Id Ticket</th>
+                    <th>Id Cliente</th>
+                    <th>Asunto</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                    <th>Fecha de Creación</th>
+                    <th>Fecha de Cierre</th>
+                    <th>Prioridad</th>
+                    <th>Comentario</th>
+                    
+                </tr>
+            </thead>
+            @*<tbody>
+                    @foreach (var ticket in Model)
+                    {
+                        <tr>
+                            <td>@ticket.IdTicket</td>
+                            <td>@ticket.IdCliente</td>
+                            <td>@ticket.Asunto</td>
+                            <td>@ticket.Descripcion</td>
+                            <td>@ticket.Estado</td>
+                            <td>@ticket.FechaCreacion</td>
+                            <td>@ticket.FechaCierre</td>
+                            <td>@ticket.Prioridad</td>
+                            <td>@ticket.Comentario</td>
+                        </tr>
+                    }
+                </tbody>*@
+        </table>
+        <a href="@Url.Action("RegistrarTicket", "Ticket")" class="btn btn-primary">Nuevo Ticket</a>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            $('#tablaTickets').DataTable();
+        });
+    </script>*@
+
+
+@section scripts {
+    <script>
+        var tabladata;
+
+        $(document).ready(function () {
+            $("#txtfechainicio").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date());
+            $("#txtfechafin").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date());
+
+            @*jQuery.ajax({
+                url: '@Url.Action("VistaDashboardTickets", "Home")',
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    var objeto = data.resultado;
+                    $("#totaltickets").text(objeto.TotalTickets);
+                }
+            });*@
+
+            var Url = '@Url.Action("ListarTickets", "Ticket")' +
+            "?fechainicio=" + $("#txtfechainicio").val() +
+            "&fechafin=" + $("#txtfechafin").val() +
+            "&idtransaccion=" + $("#txtidticket").val();
+
+            tabladata = $("#tablaTickets").DataTable({
+                responsive: true,
+                ordering: false,
+                "ajax": {
+                    url: Url,
+                    type: "GET",
+                    dataType: "json"
+                },
+                "columns": [
+                    {"data":"IdTicket"},
+                    {"data":"IdCliente"},
+                    {"data":"Asunto"},
+                    {"data":"Descripcion"},
+                    {"data":"Estado"},
+                    {"data":"FechaCreacion"},
+                    {"data":"FechaCierre"},
+                    {"data":"Prioridad"},
+                    { "data": "Comentario" }
+
+                ],
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
+                }
+
+            });
+        });
+
+        $("#btnbuscar").on("click", function () {
+             var nueva_url = '@Url.Action("ListarTickets", "Ticket")' +
+            "?fechainicio=" + $("#txtfechainicio").val() +
+            "&fechafin=" + $("#txtfechafin").val() +
+            "&idticket=" + $("#txtidticket").val();
+
+            tabladata.ajax.url(nueva_url).load();
+        });
+    </script>
+}
+
