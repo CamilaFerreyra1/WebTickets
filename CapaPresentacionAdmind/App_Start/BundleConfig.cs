@@ -33,6 +33,8 @@ namespace CapaPresentacionAdmin
                       "~/Content/DataTables/css/responsive.dataTables.css",
                       "~/Content/sweetalert.css",
                       "~/Content/jquery-ui.css"));
-        }
+              
+        } 
+
     }
 }

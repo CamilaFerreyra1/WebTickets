@@ -4,25 +4,30 @@
     ViewBag.Title = "Crear Nuevo Ticket";
 }
 
-<h2>Crear Nuevo Ticket</h2>
+@*<h2 class="mt-4">Crear Nuevo Ticket</h2>*@
+<h2 class="mt-4 p-3" style="background-color: #f8d7da; border: 1px solid #f5c6cb;">Crear Nuevo Ticket</h2>
 
-<div class="container">
+
+<div class="container mt-4">
     <div class="row">
         <div class="col-md-6">
-            @using (Html.BeginForm("GuardarTicket", "Ticket", FormMethod.Post, new { @id = "ticketForm" }))
+            @using (Html.BeginForm("GuardarTicket", "Ticket", FormMethod.Post, new { @id = "ticketForm", @class = "needs-validation", novalidate = "novalidate" }))
             {
                 @Html.AntiForgeryToken()
                 <div class="form-group">
                     @Html.LabelFor(m => m.IdCliente)
-                    @Html.TextBoxFor(m => m.IdCliente, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.IdCliente, new { @class = "form-control", required = "required" })
+                    <div class="invalid-feedback">Este campo es obligatorio.</div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.Asunto)
-                    @Html.TextBoxFor(m => m.Asunto, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Asunto, new { @class = "form-control", required = "required" })
+                    <div class="invalid-feedback">Este campo es obligatorio.</div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.Descripcion)
-                    @Html.TextAreaFor(m => m.Descripcion, new { @class = "form-control" })
+                    @Html.TextAreaFor(m => m.Descripcion, new { @class = "form-control", required = "required" })
+                    <div class="invalid-feedback">Este campo es obligatorio.</div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.Prioridad)
@@ -32,7 +37,8 @@
                         new SelectListItem { Text = "Medio", Value = "Medio" },
                         new SelectListItem { Text = "Alto", Value = "Alto" },
                         new SelectListItem { Text = "Grave", Value = "Grave" }
-                    }, "Value", "Text"), "Seleccione una prioridad", new { @class = "form-control" })
+                    }, "Value", "Text"), "Seleccione una prioridad", new { @class = "form-control", required = "required" })
+                    <div class="invalid-feedback">Seleccione una prioridad.</div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.Comentario)
@@ -40,6 +46,81 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             }
+            <div class="row mt-2">
+                @*<div class="col-12">
+                    <div id="mensajeError" class="alert alert-danger" role="alert" style="display:none;">
+                        A simple danger alert—check it out!
+                    </div>
+                </div>*@
+                <div id="mensajeExito" class="alert alert-success" style="display:none;">
+                    El ticket se ha creado exitosamente.
+                </div>
+                <div id="mensajeError" class="alert alert-danger" style="display:none;">
+                    Ha ocurrido un error al crear el ticket. Por favor, inténtalo de nuevo.
+                </div>
+            </div>
         </div>
     </div>
-</div>
+
+    @section scripts {
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <script>
+        // Validación del formulario utilizando Bootstrap
+        (function () {
+            'use strict'
+
+            // Busca todos los formularios a los que se les aplicará la validación de Bootstrap
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Itera sobre ellos y evita su envío predeterminado si no son válidos
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+
+        $(document).ready(function () {
+            $('#ticketForm').on('submit', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                if (this.checkValidity() === false) {
+                    return;
+                }
+
+                var form = $(this);
+                var url = form.attr('action');
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GuardarTicket", "Ticket")',
+                    data: form.serialize(),
+                    success: function (response) {
+                        if (response.resultado) {
+                            $('#mensajeExito').show();
+                            $('#mensajeError').hide();
+                        } else {
+                            $('#mensajeError').text(response.mensaje).show();
+                            $('#mensajeExito').hide();
+                        }
+                    },
+                    error: function () {
+                        $('#mensajeError').text('Ha ocurrido un error al crear el ticket. Por favor, inténtalo de nuevo.').show();
+                        $('#mensajeExito').hide();
+                    }
+                });
+
+                form.addClass('was-validated');
+            });
+        });
+        </script>
+    }
+

@@ -23,7 +23,7 @@ namespace CapaDatos
                 using (SqlConnection oconexion = new SqlConnection(Conexion.cn))
                 {
 
-                    string query = "select IdUsuario,Nombre,Apellidos,Correo,Clave,Restablecer,Activo from Usuario";
+                    string query = "select IdUsuario,Nombre,Apellidos,Correo,Clave,Restablecer,Activo,Rol from Usuario";
 
                     SqlCommand cmd = new SqlCommand(query, oconexion);
                     cmd.CommandType = CommandType.Text;
@@ -48,6 +48,7 @@ namespace CapaDatos
                                     Clave = dr["Clave"].ToString(),
                                     Restablecer = Convert.ToBoolean(dr["Restablecer"]),
                                     Activo = Convert.ToBoolean(dr["Activo"]),
+                                    Rol = dr["Rol"].ToString(),
                                 }
                                 );
                         }

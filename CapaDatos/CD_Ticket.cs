@@ -70,13 +70,13 @@ namespace CapaDatos
                 using (SqlConnection oconexion = new SqlConnection(Conexion.cn))
                 {
                     SqlCommand cmd = new SqlCommand("sp_RegistrarTicket", oconexion);
-                    cmd.Parameters.AddWithValue("IdTicket", obj.IdCliente);
+                   // cmd.Parameters.AddWithValue("IdTicket", obj.IdCliente);
                     cmd.Parameters.AddWithValue("IdCliente", obj.IdCliente);
                     cmd.Parameters.AddWithValue("Asunto", obj.Asunto);
                     cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
-                    cmd.Parameters.AddWithValue("Estado", obj.Estado);
+                   // cmd.Parameters.AddWithValue("Estado", obj.Estado);
                     cmd.Parameters.AddWithValue("Estado", "Pendiente");
-                    cmd.Parameters.AddWithValue("FechaCreacion", obj.FechaCreacion);
+                   // cmd.Parameters.AddWithValue("FechaCreacion", obj.FechaCreacion);
                     cmd.Parameters.AddWithValue("FechaCreacion", DateTime.Now);
                     cmd.Parameters.AddWithValue("Prioridad", obj.Prioridad);
                     cmd.Parameters.AddWithValue("Comentario",obj.Comentario); // Nuevo parámetro
@@ -122,10 +122,10 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
                     cmd.Parameters.AddWithValue("Estado", obj.Estado);
                     cmd.Parameters.AddWithValue("Asunto", obj.Asunto);
-                  //  cmd.Parameters.AddWithValue("FechaCierre", obj.FechaCierre);
+                    //cmd.Parameters.AddWithValue("FechaCierre", obj.FechaCierre);
                     cmd.Parameters.AddWithValue("Comentario", obj.Comentario);
 
-                   // cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -133,7 +133,7 @@ namespace CapaDatos
 
                     cmd.ExecuteNonQuery();
 
-                   // resultado = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    resultado = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
                     Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
                 }
 

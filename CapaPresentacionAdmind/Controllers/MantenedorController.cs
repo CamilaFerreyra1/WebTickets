@@ -30,7 +30,7 @@ namespace CapaPresentacionAdmin.Controllers
         {
             List<Ticket> listaTickets = new List<Ticket>();
 
-            listaTickets = new CN_Ticket().ListarTicket();
+            listaTickets = new CN_Ticket().ListarTickets();
 
             return Json(new { data = listaTickets }, JsonRequestBehavior.AllowGet);
         }
@@ -41,16 +41,14 @@ namespace CapaPresentacionAdmin.Controllers
                    object resultado;
                    string mensaje = string.Empty;
 
-            System.Diagnostics.Debug.WriteLine("IdTicket: " + objeto.IdTicket);
+                 //System.Diagnostics.Debug.WriteLine("IdTicket: " + objeto.IdTicket);
 
-            if (objeto.IdTicket == 0)
-                   {
-        // Lógica para guardar un nuevo ticket
+                  if (objeto.IdTicket == 0){
+                  
                        resultado = new CN_Ticket().RegistrarTicket(objeto, out mensaje);
-                   }
-                   else
-                   {
-        // Lógica para editar un ticket existente
+                  }
+                   else{
+                   
                        resultado = new CN_Ticket().EditarTicket(objeto, out mensaje);
                    }
 

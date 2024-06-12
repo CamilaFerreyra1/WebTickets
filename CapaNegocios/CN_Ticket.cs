@@ -14,13 +14,15 @@ namespace CapaNegocio
 
         private CD_Ticket objCapaDato = new CD_Ticket();
 
-        public List<Ticket> ListarTicket()
+        public List<Ticket> ListarTickets()
         {
             return objCapaDato.ListarTickets();
         }
 
         public object RegistrarTicket(Ticket obj, out string mensaje)
         {
+
+
             mensaje = string.Empty;
 
             // Validar los datos del ticket
@@ -41,15 +43,20 @@ namespace CapaNegocio
                 return null;
             }
 
+          
+
             if (string.IsNullOrEmpty(mensaje))
             {
-              //  obj.Clave = CN_Recursos.ConvertirSha256(obj.Clave);
+                //  obj.Clave = CN_Recursos.ConvertirSha256(obj.Clave);
+                mensaje = "Ticket creado";
                 return objCapaDato.RegistrarTicket(obj, out mensaje);
+
+                
 
             }
             else
             {
-
+                mensaje = "No se pudo crear el ticket";
                 return 0;
             }
             //   return "Envio Exitoso";
@@ -66,12 +73,12 @@ namespace CapaNegocio
             Mensaje = string.Empty;
 
              if (string.IsNullOrEmpty(obj.Estado) || string.IsNullOrWhiteSpace(obj.Estado))
-           // if (!string.IsNullOrEmpty(obj.Estado))
+           
             {
                 Mensaje = "El Estado debe completarse";
             }
              else if (string.IsNullOrEmpty(obj.Comentario) || string.IsNullOrWhiteSpace(obj.Comentario))
-            //if (!string.IsNullOrEmpty(obj Comentario))
+           
             {
                 Mensaje = "El comentario no puede estar vacio";
             }
